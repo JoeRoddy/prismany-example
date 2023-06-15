@@ -1,0 +1,17 @@
+generator client {
+    output   = "../node_modules/@prismany/client/mongo"
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGO_URL")
+}
+
+model MongoModel {
+    someMongoField String
+
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
